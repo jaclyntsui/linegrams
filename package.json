@@ -1,0 +1,16 @@
+{
+  "name": "linegrams",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.8",
+    "ejs": "*",
+    "swig": "~1.3.2",
+    "mongoose": "~3.8.8",
+    "passport-instagram": "~0.1.2",
+    "passport": "~0.2.0"
+  }
+}
