@@ -7,12 +7,13 @@ db.on('error', console.error.bind(console, 'connection error:'));
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-  id: String,
+  instagram_id: String,
   username: String,
   full_name: String,
   profile_picture: String,
   bio: String,
   website: String,
+  token: String,
   counts: {
     media: Number,
     follows: Number,
@@ -20,6 +21,19 @@ var userSchema = new Schema({
   }
 });
 
-User = mongoose.model('User', userSchema);
+var entrySchema = new Schema({
+	tags: [String],
+	photo_id: String
+})
 
-module.exports = {"User": User};
+User = mongoose.model('User', userSchema);
+Entry = mongoose.model('Entry', entrySchema);
+// module.exports = {"User": User};
+exports.User = User;
+exports.Entry = Entry;
+
+var entry = new Entry({
+	tags: ["Hello Test", "Yo"],
+	photo_id: "asdfasdf"
+})
+entry.save();

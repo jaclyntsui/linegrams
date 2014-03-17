@@ -1,0 +1,193 @@
+{% extends "layout.html" %}
+
+{% block title%}Linegrams - Features{% endblock%}
+
+{% block content%}
+<div class="container">
+    <div class="page-header">
+		<h1 id="">Linegrams Timeline</h1>
+	</div>
+	<div id="timeline"><div class="row timeline-movement timeline-movement-top">
+    <div class="timeline-badge timeline-future-movement">
+        <a href="#">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+    <div class="timeline-badge timeline-filter-movement">
+        <a href="#">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </a>
+    </div>
+
+</div>
+<div class="row timeline-movement">
+
+    <div class="timeline-badge">
+        <span class="timeline-balloon-date-day">18</span>
+        <span class="timeline-balloon-date-month">APR</span>
+    </div>
+
+
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="timeline-panel credits">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Mussum ipsum cacilds</span></li>
+                        <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-11">
+                <div class="timeline-panel debits">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Mussum ipsum cacilds</span></li>
+                        <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--due -->
+
+<div class="row timeline-movement">
+
+
+    <div class="timeline-badge">
+        <span class="timeline-balloon-date-day">13</span>
+        <span class="timeline-balloon-date-month">APR</span>
+    </div>
+
+    <div class="col-sm-offset-6 col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-11">
+                <div class="timeline-panel debits">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Mussum ipsum cacilds</span></li>
+                        <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="timeline-panel credits">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Mussum ipsum cacilds</span></li>
+                        <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="row timeline-movement">
+
+
+    <div class="timeline-badge">
+        <span class="timeline-balloon-date-day">10</span>
+        <span class="timeline-balloon-date-month">APR</span>
+    </div>
+
+    <div class="col-sm-offset-6 col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-11">
+                <div class="timeline-panel debits">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Mussum ipsum cacilds</span></li>
+                        <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6  timeline-item">
+        <div class="row">
+            <div class="col-sm-11">
+                <div class="timeline-panel credits">
+                    <ul class="timeline-panel-ul">
+                        <li><span class="importo">Mussum ipsum cacilds</span></li>
+                        <li><span class="causale">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span> </li>
+                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11/09/2014</small></p> </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>
+</div>
+{% for img in data %}
+<img src="{{img.images.low_resolution.url}}">
+{% endfor %}
+
+
+<!-- <ul class="cbp_tmtimeline">
+    <li>
+        <time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>4/10/13</span> <span>18:30</span></time>
+        <div class="cbp_tmicon cbp_tmicon-phone"></div>
+        <div class="cbp_tmlabel">
+            <h2>Ricebean black-eyed pea</h2>
+            <p>Winter purslane...</p>
+        </div>
+    </li>
+    <li>
+        <time class="cbp_tmtime" datetime="2013-04-11T12:04"><span>4/11/13</span> <span>12:04</span></time>
+        <div class="cbp_tmicon cbp_tmicon-screen"></div>
+        <div class="cbp_tmlabel">
+            <h2>Greens radish arugula</h2>
+            <p>Caulie dandelion maize...</p>
+        </div>
+    </li>
+    <li>
+        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>4/13/13</span> <span>05:36</span></time>
+        <div class="cbp_tmicon cbp_tmicon-mail"></div>
+        <div class="cbp_tmlabel">
+            <h2>Sprout garlic kohlrabi</h2>
+            <p>Parsnip lotus root...</p>
+        </div>
+    </li>
+    <li>
+        <time class="cbp_tmtime" datetime="2013-04-15 13:15"><span>4/15/13</span> <span>13:15</span></time>
+        <div class="cbp_tmicon cbp_tmicon-phone"></div>
+        <div class="cbp_tmlabel">
+            <h2>Watercress ricebean</h2>
+            <p>Peanut gourd nori...</p>
+        </div>
+    </li>
+    <li>
+        <time class="cbp_tmtime" datetime="2013-04-16 21:30"><span>4/16/13</span> <span>21:30</span></time>
+        <div class="cbp_tmicon cbp_tmicon-earth"></div>
+        <div class="cbp_tmlabel">
+            <h2>Courgette daikon</h2>
+            <p>Parsley amaranth tigernut...</p>
+        </div>
+    </li>
+</ul> -->
+{% endblock %}

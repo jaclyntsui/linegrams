@@ -11,8 +11,8 @@ var app = express();
 //INSTAGRAM DEPENDENCIES
 var passport = require('passport');
 var InstagramStrategy = require('passport-instagram').Strategy;
-// var INSTAGRAM_CLIENT_ID = "2342600818a2402694ca489bca54392f";
-// var INSTAGRAM_CLIENT_SECRET = "dfe7d95a48494ec6b3c425fb198a2962";
+var INSTAGRAM_CLIENT_ID = "2342600818a2402694ca489bca54392f";
+var INSTAGRAM_CLIENT_SECRET = "dfe7d95a48494ec6b3c425fb198a2962";
 var User = require('./models/index.js').User;
 
 
@@ -28,7 +28,10 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
-
+  app.use(express.cookieParser());
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+app.use(express.session({ secret: 'keyboard cat' }));
 
 //INSTAGRAM API ENVIRONMENTS
 app.use(passport.initialize());
@@ -43,10 +46,12 @@ if ('development' == app.get('env')) {
 
 //INSTGRAM API
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user._id.toString());
 });
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+passport.deserializeUser(function(_id, done) {
+	User.findOne({_id: _id}, function(err, userDoc) {
+	  done(null, userDoc);
+	});
 });
 
 //Use the InstagramStrategy within Passport.
@@ -56,17 +61,18 @@ passport.use(new InstagramStrategy({
     callbackURL: "http://192.168.1.78:3000/auth/instagram/callback"
   },
   function(accessToken, refreshToken, profile, done) {
+  	console.log("What instagram sent me: ", profile);
     process.nextTick(function () {
-    	User.findOne({ instagramId: profile.id }, function(err, user){
+    	User.findOne({ instagram_id: profile.id }, function(err, userDoc){
     		if(err)
     			return done(err);
-    		if(user){
-    			return done(null, user);
+    		if(userDoc){
+    			return done(null, userDoc);
     		} else {
     			var newUser = new User();
-    			newUser.id = profile._json.data.id;
+    			newUser.instagram_id = profile._json.data.id;
     			newUser.username = profile._json.data.username;
-    			newUser.full_name = profile._json.data.username;
+    			newUser.full_name = profile._json.data.full_name;
     			newUser.profile_picture = profile._json.data.profile_picture;
     			newUser.bio = profile._json.data.bio;
     			newUser.website = profile._json.data.website;
@@ -95,7 +101,7 @@ app.get('/auth/instagram',
 app.get('/auth/instagram/callback',
   passport.authenticate('instagram', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/#/profile');
+    res.redirect('/profile');
   });
 app.get('/logout', function(req, res){
   req.logout();
@@ -103,8 +109,12 @@ app.get('/logout', function(req, res){
 });
 
 function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/')
+	// console.log("inside authentication: ", req)
+  if (req.isAuthenticated()) {
+  	return next();
+  } else {
+	  res.redirect('/');
+	}
 }
 
 
@@ -112,11 +122,11 @@ function ensureAuthenticated(req, res, next) {
 //ROUTES
 app.get('/', routes.index);
 app.get('/users/:username', routes.user);
-app.get('/profile', routes.profile);
+app.get('/profile', ensureAuthenticated, routes.profile);
 app.get('/about', routes.about);
-// app.get('/features', routes.features);
-// app.get('/contact_us', routes.contact_us);
-// app.post('/submit', routes.submit_form);
+app.get('/features', routes.features);
+app.get('/contact_us', routes.contact_us);
+app.post('/submit', routes.submit_form);
 
 
 //LAUNCH

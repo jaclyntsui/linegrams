@@ -1,55 +1,69 @@
 <!-- layout.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
 	<title>{% block title%}Linegrams{% endblock %}</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="http://getbootstrap.com/examples/cover/cover.css">
+		<link rel="stylesheet" type="text/css" href="stylesheets/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/main.css">
 	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/timeline.css">
+
+<!-- 	<link rel="stylesheet" type="text/css" href="stylesheets/default.css">
+ -->
+ <!-- <link rel="stylesheet" type="text/css" href="stylesheets/component.css"> -->
+
+
 </head>
 <body>
-		<div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand" id="h3">LINEGRAMS</h3>
-              <ul class="nav masthead-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="journal">
-          	<img src="images/journal_1.png" >
-          </div>
-          <div class="inner cover">
-            <h1 class="cover-heading">Line up your instagrams.</h1>
-            <p class="lead">Linegrams is a one-page template for organizing your instagram journeys in a simple and beautiful timeline format.<br><br>Make yours today!</p>
-            <p class="lead">
-              <a href="/auth/instagram" class="btn btn-lg btn-default">Sign Up with INSTAGRAM</a>
-            </p>
-          </div>
-
-          <div class="mastfoot">
-            <div class="inner">
-              <p>Made especially for you, by <a href="https://twitter.com/jaclyntsui">@jaclyntsui</a>.</p>
-            </div>
-          </div>
-
+		<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">LINEGRAMS</a>
         </div>
-
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">HOME</a></li>
+            <li><a href="/about">ABOUT</a></li>
+            <li><a href="/features">FEATURES</a></li>
+            <li class="active"><a href="/contact_us">CONTACT US</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
-
     </div>
+          {% block content %} {% endblock %}
+
+<div id="r">
+		<div class="container">
+			<div class="row centered">
+				<div class="col-lg-8 col-lg-offset-2">
+					<h4>WE ARE STORYTELLERS. JOURNALS ENTRIES, HASTAGS AND PHOTOS ARE OUR VOICE.</h4>
+					<p>We believe ideas come from everyone, everywhere. At Linegrams, everyone within our company walls is a creator in their own right. And there are a few principles we believe—and we believe everyone should believe—about our ability to craft. These truths drive us, motivate us, and ultimately help us redefine the power of design.</p>
+				</div>
+			</div><!-- row -->
+		</div><!-- container -->
+	</div><! -- r wrap -->
+
+<!-- FOOTER -->
+	<div id="f">
+		<div class="container">
+			<div class="row centered">
+				<a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a><a href="http://www.facebook.com"><i class="fa fa-facebook"></i></a>
+
+			</div><!-- row -->
+		</div><!-- container -->
+	</div><!-- Footer -->
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->
@@ -57,5 +71,9 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <script src="javascripts/application.js"></script>
+    <script src="javascripts/Chart.js"></script>
+    <script src="javascripts/modernizr.custom.js"></script>
+
+
 </body>
 </html>

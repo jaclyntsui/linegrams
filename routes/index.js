@@ -3,9 +3,13 @@
  * GET home page.
  */
 var models = require('../models');
+Instagram = require('instagram-node-lib');
+
+Instagram.set('client_id', '2342600818a2402694ca489bca54392f');
+Instagram.set('client_secret', 'dfe7d95a48494ec6b3c425fb198a2962');
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' }); //{docs: data} takes the place of swig tags {% for page in docs%}{{page.title}} {% endfor %}
+  res.render('index', { title: 'Linegrams' }); //{docs: data} takes the place of swig tags {% for page in docs%}{{page.title}} {% endfor %}
 };
 
 exports.user = function(req, res){
@@ -13,7 +17,18 @@ exports.user = function(req, res){
 };
 
 exports.profile = function(req, res){
-  res.render('profile', { title: 'Express' });
+	// console.log("Inside Profile: ", req.user);
+	Instagram.users.recent({
+		user_id: req.user.instagram_id,
+		access_token: req.user.token,
+		complete: function(data) {
+			// console.log("Instagram API:", data);
+			res.render("profile", {data: data});
+		}
+	});
+
+
+  // res.render('profile', { title: 'Express' });
 };
 
 exports.about = function(req, res){
