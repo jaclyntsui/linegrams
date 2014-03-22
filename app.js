@@ -6,6 +6,7 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var app = express();
+var nodemailer = require('nodemailer')
 
 
 //INSTAGRAM DEPENDENCIES
@@ -28,9 +29,9 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
+app.use(express.cookieParser());
+app.use(express.bodyParser());
+app.use(express.methodOverride());
 app.use(express.session({ secret: 'keyboard cat' }));
 
 //INSTAGRAM API ENVIRONMENTS
@@ -61,7 +62,7 @@ passport.use(new InstagramStrategy({
     callbackURL: "http://192.168.1.78:3000/auth/instagram/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-  	console.log("What instagram sent me: ", profile);
+  	console.log("What instagram auth sent me: ", profile);
     process.nextTick(function () {
     	User.findOne({ instagram_id: profile.id }, function(err, userDoc){
     		if(err)
@@ -126,7 +127,7 @@ app.get('/profile', ensureAuthenticated, routes.profile);
 app.get('/about', routes.about);
 app.get('/features', routes.features);
 app.get('/contact_us', routes.contact_us);
-app.post('/submit', routes.submit_form);
+app.post('/contact_us', routes.submit_form);
 
 
 //LAUNCH

@@ -21,6 +21,13 @@ var userSchema = new Schema({
   }
 });
 
+var contactSchema = new Schema({
+	name: String,
+	email: String,
+	subject: String,
+	message: String
+})
+
 var entrySchema = new Schema({
 	tags: [String],
 	photo_id: String
@@ -28,12 +35,14 @@ var entrySchema = new Schema({
 
 User = mongoose.model('User', userSchema);
 Entry = mongoose.model('Entry', entrySchema);
-// module.exports = {"User": User};
+Contact = mongoose.model('Contact', contactSchema);
+
 exports.User = User;
 exports.Entry = Entry;
+exports.Contact = Contact;
 
-var entry = new Entry({
-	tags: ["Hello Test", "Yo"],
-	photo_id: "asdfasdf"
-})
-entry.save();
+// var entry = new Entry({
+// 	tags: ["Hello Test", "Yo"],
+// 	photo_id: "asdfasdf"
+// })
+// entry.save();

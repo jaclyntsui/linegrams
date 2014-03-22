@@ -401,4 +401,35 @@ a:after {
     background: #ff7878;
 }
 
+.contact-form {
+    margin-top:70px;
+}
 
+/*contact us*/
+
+.cwell{
+	padding:20px;
+	background: #fff;
+	margin-top: 10px;
+	border:1px solid #eee;
+   border-radius:10px;
+}
+
+.cwell h5{
+   border-bottom: 1px solid #eee;
+   padding-bottom: 10px;
+   font-size:17px;
+   font-weight:600;
+}
+
+.cwell h6{
+	font-size: 14px;
+   font-weight:600;
+}
+
+.gmap iframe{
+   width:100%;
+   margin-bottom: 10px;
+   padding-bottom:0px !important;
+   border-bottom:1px solid #ccc;
+}
