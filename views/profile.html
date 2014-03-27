@@ -3,9 +3,6 @@
 {% block title%}Linegrams - Profile{% endblock%}
 
 {% block content%}
-{#
-{{data|json}}
-#}
 
 {% for img in data.shares %}
 <img src="{{img.image_versions[1].url}}">

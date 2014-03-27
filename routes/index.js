@@ -5,6 +5,10 @@
 var models = require('../models');
 Instagram = require('instagram-node-lib');
 var nodemailer = require('nodemailer');
+var request = require('request');
+var cheerio = require('cheerio');
+var j = request.jar();
+request = request.defaults({jar: j});
 
 
 Instagram.set('client_id', '2342600818a2402694ca489bca54392f');
@@ -20,7 +24,37 @@ exports.user = function(req, res){
 };
 
 exports.profile = function(req, res){
+request.get("https://instagram.com/accounts/login/", function(err, response, body) {
+  $ = cheerio.load(body);
+  var csrf = $("input[name='csrfmiddlewaretoken']").val();
+  // console.log(csrf);
+  // console.log(j);
 
+  request.post("https://instagram.com/accounts/login/", {
+    jar: j,
+    headers: {
+        'Referer': 'https://instagram.com/accounts/login/',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36'
+    },
+    form: {
+      csrfmiddlewaretoken: csrf,
+      username: "linegrams",
+      password: "" }
+	}, function(err, response, body) {
+
+	  request.get("https://instagram.com/api/v1/direct_share/inbox/", function(err, response, body) {
+        data = JSON.parse(body);
+        console.log(req.user.username, "USER");
+        console.log("PRE:", data.shares);
+
+        data.shares = data.shares.filter(function(share) {
+        	return share.user.username === req.user.username;
+        });
+        console.log("POST", data.shares);
+        	res.render("profile", {data: data});
+      });
+	});
+});
 };
 
 exports.about = function(req, res){
