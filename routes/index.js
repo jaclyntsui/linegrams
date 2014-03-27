@@ -24,6 +24,13 @@ exports.user = function(req, res){
 };
 
 exports.profile = function(req, res){
+
+	// Instagram.users.recent({
+	// 	user_id: req.user.instagram_id,
+	// 	access_token: req.user.token,
+	// 	complete: function(data) {
+	// 		console.log(data[0]);
+
 request.get("https://instagram.com/accounts/login/", function(err, response, body) {
   $ = cheerio.load(body);
   var csrf = $("input[name='csrfmiddlewaretoken']").val();
