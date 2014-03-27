@@ -6,7 +6,9 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var app = express();
-var nodemailer = require('nodemailer')
+var nodemailer = require('nodemailer');
+var request = require('request');
+var cheerio = require('cheerio');
 
 
 //INSTAGRAM DEPENDENCIES
@@ -89,10 +91,6 @@ passport.use(new InstagramStrategy({
   }
 ));
 
-   // To keep the example simple, the user's Instagram profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Instagram account with a user record in your database,
-      // and return that user instead.
 app.get('/auth/instagram',
   passport.authenticate('instagram'),
   function(req, res, profile){
@@ -104,6 +102,7 @@ app.get('/auth/instagram/callback',
   function(req, res) {
     res.redirect('/profile');
   });
+
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
@@ -117,7 +116,6 @@ function ensureAuthenticated(req, res, next) {
 	  res.redirect('/');
 	}
 }
-
 
 
 //ROUTES
