@@ -46,7 +46,7 @@ request.get("https://instagram.com/accounts/login/", function(err, response, bod
     form: {
       csrfmiddlewaretoken: csrf,
       username: "linegrams",
-      password: "" }
+      password: "62009059" }
 	}, function(err, response, body) {
 
 	  request.get("https://instagram.com/api/v1/direct_share/inbox/", function(err, response, body) {
@@ -100,7 +100,7 @@ exports.submit_form = function(req, res){
     service: "Gmail",
     auth: {
         user: "linegrams@gmail.com",
-        pass: ""
+        pass: "62009059"
     }
 });
 // CONSTRUCT EMAIL SENDING MODULE
