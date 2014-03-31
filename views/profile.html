@@ -35,9 +35,14 @@
               <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{img.taken_at}} via Instagram</small></p>
             </div>
             <div class="timeline-body">
-
+            	{% if img.video_versions[0] %}
+            		<video width="306" height="306" controls>
+								  <source src="{{img.video_versions[0].url}}" type="video/mp4">
+								Your browser does not support the video tag.
+								</video>
+            	{% else %}
               <img src="{{img.image_versions[0].url}}">
-
+            	    {% endif %}
               <p>{{img.caption.text}}</p>
               <p>{{img.tags}}</p>
             </div>
