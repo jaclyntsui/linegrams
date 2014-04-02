@@ -8,6 +8,20 @@
     <div class="page-header">
         <h1 id="timeline">My Journal</h1>
     </div>
+ <div class="container">
+	<div class="row">
+           <div id="custom-search-input">
+                            <div class="input-group col-md-6">
+                                <input type="text" class="  search-query form-control" placeholder="Search keywords and hastags" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+	</div>
+</div>
 {% for index,img in data.shares %}
 {% if index % 2 == 0 || index == 0 %}
 {% set img1 = data.shares[index] %}
@@ -28,8 +42,20 @@
             	{% else %}
               <img src="{{img1.image_versions[0].url}}">
             	    {% endif %}
-              <p>{{img1.caption.text}}</p>
-            </div>
+            	<div class="timeline-footer">
+            		<a class="pull-right"><i class="glyphicon glyphicon-heart"></i></a>
+            		<strong>Description</strong>
+                <p>{{img1.caption.text}}</p>
+            	</div>
+<!--  							<li class="timeline-inverted">
+ 								          <div class="timeline-panel">
+ 								          	<div class="timeline-body">
+ 								          		<p><small class="text-muted"><i class="glyphicon glyphicon-pencil"></i> Description</small></p>
+ 								          		<p>{{img1.caption.text}}</p>
+ 								          	</div>
+													</div>
+							</li> -->
+						</div>
           </div>
         </li>
         {% if img2 %}
@@ -48,7 +74,19 @@
             	{% else %}
               <img src="{{img2.image_versions[0].url}}">
             	    {% endif %}
-              <p>{{img2.caption.text}}</p>
+<!--             	    <li class="timeline">
+ 								          <div class="timeline-panel">
+ 								          	<div class="timeline-body">
+ 								          		<p><small class="text-muted"><i class="glyphicon glyphicon-pencil"></i> Description</small></p>
+ 								          		<p>{{img2.caption.text}}</p>
+ 								          	</div>
+													</div>
+							</li> -->
+							<div class="timeline-footer">
+            		<a class="pull-right"><i class="glyphicon glyphicon-heart"></i></a>
+            		<strong>Description</strong>
+                <p>{{img2.caption.text}}</p>
+            	</div>
             </div>
           </div>
         </li>

@@ -584,6 +584,11 @@ a:after {
         margin-top: 5px;
     }
 
+.timeline-footer{
+    padding:20px;
+    background-color: #f4f4f4;
+}
+
 @media (max-width: 767px) {
     ul.timeline:before {
         left: 40px;
@@ -619,6 +624,4 @@ a:after {
             right: auto;
         }
 }
-
-/*CUSTOM*/
 
