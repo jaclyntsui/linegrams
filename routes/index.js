@@ -34,8 +34,6 @@ exports.profile = function(req, res){
 request.get("https://instagram.com/accounts/login/", function(err, response, body) {
   $ = cheerio.load(body);
   var csrf = $("input[name='csrfmiddlewaretoken']").val();
-  // console.log(csrf);
-  // console.log(j);
 
   request.post("https://instagram.com/accounts/login/", {
     jar: j,

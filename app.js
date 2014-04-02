@@ -1,6 +1,7 @@
 //MODULE DEPENDENCIES
 var express = require('express');
 var swig = require('swig');
+var filters = require('./filters')(swig);
 var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');

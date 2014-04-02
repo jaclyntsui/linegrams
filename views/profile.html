@@ -4,52 +4,60 @@
 
 {% block content%}
 
-{#
-{% for img in data.shares %}
-<img src="{{img.image_versions[1].url}}">
-<p>{{img.caption.text}}</p>
-<p>{{img.tags}}</p>
-{% endfor %}
-#}
-
-{#
-{% for img in data %}
-<img src="{{img.images.low_resolution.url}}">
-<p>{{img.caption.text}}</p>
-<p>{{img.tags}}</p>
-{% endfor %}
-#}
-
-
 <div class="container">
     <div class="page-header">
-        <h1 id="timeline">Your Journal</h1>
+        <h1 id="timeline">My Journal</h1>
     </div>
-{% for img in data.shares %}
+{% for index,img in data.shares %}
+{% if index % 2 == 0 || index == 0 %}
+{% set img1 = data.shares[index] %}
+{% set img2 = data.shares[index+1] %}
     <ul class="timeline">
         <li>
-          <div class="timeline-badge"><i class="glyphicons-icon umbrella"></i></div>
+          <div class="timeline-badge info"><i class="glyphicon glyphicon-picture"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
-              <h4 class="timeline-title">{{img.recipients.user.username}}</h4>
-              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{img.taken_at}} via Instagram</small></p>
+               <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{img1.taken_at|datefromunix|date('F j, Y, g:i a')}} via Instagram</small></p>
             </div>
             <div class="timeline-body">
-            	{% if img.video_versions[0] %}
-            		<video width="306" height="306" controls>
-								  <source src="{{img.video_versions[0].url}}" type="video/mp4">
+            	{% if img1.video_versions[0] %}
+            		<video width="392" height="392" controls>
+								  <source src="{{img1.video_versions[0].url}}" type="video/mp4">
 								Your browser does not support the video tag.
 								</video>
             	{% else %}
-              <img src="{{img.image_versions[0].url}}">
+              <img src="{{img1.image_versions[0].url}}">
             	    {% endif %}
-              <p>{{img.caption.text}}</p>
-              <p>{{img.tags}}</p>
+              <p>{{img1.caption.text}}</p>
+            </div>
+          </div>
+        </li>
+        {% if img2 %}
+           <li class="timeline-inverted">
+          <div class="timeline-badge warning"><i class="glyphicon glyphicon-picture"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+             <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{img2.taken_at|datefromunix|date('F j, Y, g:i a')}} via Instagram</small></p>
+            </div>
+            <div class="timeline-body">
+              {% if img2.video_versions[0] %}
+									<video width="392" height="392" controls>
+								  <source src="{{img2.video_versions[0].url}}" type="video/mp4">
+								Your browser does not support the video tag.
+								</video>
+            	{% else %}
+              <img src="{{img2.image_versions[0].url}}">
+            	    {% endif %}
+              <p>{{img2.caption.text}}</p>
             </div>
           </div>
         </li>
     </ul>
+         {% endif %}
+       {% endif %}
+    {% endfor %}
 </div>
-{% endfor %}
+
+
 
 {% endblock %}
