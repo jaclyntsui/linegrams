@@ -90,6 +90,12 @@ a:after {
 	background: #ff7878
 }
 
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #ffffff;
+  background-color: #ff7878 ;
+}
+
 .navbar-inverse .navbar-brand {
 	color: #999999;
 	font-weight: bolder;
@@ -131,7 +137,7 @@ a:after {
 	text-align:center;
 	background-attachment: relative;
 	background-position: center center;
-	min-height: 700px;
+	min-height: 800px;
 	width: 100%;
 
     -webkit-background-size: 100%;
