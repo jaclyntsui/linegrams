@@ -58,11 +58,13 @@ passport.deserializeUser(function(_id, done) {
 	});
 });
 
+var callbackURL = process.env.INSTAGRAMURL||"http://192.168.1.78:3000/auth/instagram/callback";
+
 //Use the InstagramStrategy within Passport.
 passport.use(new InstagramStrategy({
     clientID: INSTAGRAM_CLIENT_ID,
     clientSecret: INSTAGRAM_CLIENT_SECRET,
-    callbackURL: "http://192.168.1.78:3000/auth/instagram/callback"
+    callbackURL: callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
   	console.log("What instagram auth sent me: ", profile);
